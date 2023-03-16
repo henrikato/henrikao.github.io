@@ -1,4 +1,6 @@
 import { Component } from "react";
+import sadge from "../assets/sadge.gif";
+import lmao from "../assets/lmao.png";
 import "./styles.css";
 
 type State = Profile & {
@@ -24,19 +26,11 @@ export default class App extends Component<unknown, State> {
 
   async componentDidMount() {
     try {
-      const profile_req = await fetch(import.meta.env.VITE_PROFILE_URL, {
-        headers: {
-          Authorization: `Bearer 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`,
-        },
-      });
+      const profile_req = await fetch(import.meta.env.VITE_PROFILE_URL);
       const { email, company, ...profile }: Profile = await profile_req.json();
       if (profile_req.status !== 200) throw Error();
 
-      const repos_req = await fetch(profile.repos_url, {
-        headers: {
-          Authorization: `Bearer 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`,
-        },
-      });
+      const repos_req = await fetch(profile.repos_url);
       const repos: Repository[] = await repos_req.json();
       if (repos_req.status !== 200) throw Error();
 
@@ -66,7 +60,7 @@ export default class App extends Component<unknown, State> {
       <div className="h-screen w-screen flex flex-col items-center justify-center">
         {error ? (
           <>
-            <img src="/public/sadge.gif" />
+            <img src={sadge} />
             <p>oops</p>
           </>
         ) : (
@@ -135,7 +129,7 @@ export default class App extends Component<unknown, State> {
           </div>
         </main>
         <footer className="mt-12 flex items-center justify-center">
-          <img src="/public/lmao.png" alt="lmao" />
+          <img src={lmao} alt="lmao" />
         </footer>
       </>
     );
