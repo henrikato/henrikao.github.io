@@ -46,7 +46,6 @@ export default class App extends Component<unknown, State> {
     const {
       avatar_url,
       bio,
-      company,
       email,
       html_url,
       location,
@@ -82,12 +81,6 @@ export default class App extends Component<unknown, State> {
             <hr className="my-8 border-emerald-400" />
             <p>
               <i>{bio}</i>
-            </p>
-            <p>
-              Working @&nbsp;
-              <a href={company} rel="noreferrer noopener" target="_blank">
-                FullStack Labs
-              </a>
             </p>
             <p>
               <a
